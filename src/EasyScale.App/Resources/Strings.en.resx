@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="AppTitle" xml:space="preserve">
+    <value>EasyScale</value>
+  </data>
+  <data name="Tray_Tooltip" xml:space="preserve">
+    <value>EasyScale — Display scaling</value>
+  </data>
+  <data name="Tray_Show" xml:space="preserve">
+    <value>Show main window</value>
+  </data>
+  <data name="Tray_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Tray_Presets" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="Main_Title" xml:space="preserve">
+    <value>Display scaling</value>
+  </data>
+  <data name="Main_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Main_Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Main_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Main_Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="Main_Recommended" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="Main_NoMonitors" xml:space="preserve">
+    <value>No monitors detected</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Settings_LanguageSystem" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Settings_ThemeSystem" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="Settings_ThemeLight" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Settings_ThemeDark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_AutoStart" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="Settings_Presets" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="Settings_PresetName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Settings_AddPreset" xml:space="preserve">
+    <value>Add current scale as preset</value>
+  </data>
+  <data name="Settings_DeletePreset" xml:space="preserve">
+    <value>Delete selected preset</value>
+  </data>
+  <data name="Settings_NoPresets" xml:space="preserve">
+    <value>No presets yet</value>
+  </data>
+  <data name="Preset_NewName" xml:space="preserve">
+    <value>New preset</value>
+  </data>
+  <data name="Button_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Error_SetScaleFailed" xml:space="preserve">
+    <value>Failed to set scale: {0}</value>
+  </data>
+  <data name="Error_LoadMonitorsFailed" xml:space="preserve">
+    <value>Failed to read monitor info: {0}</value>
+  </data>
+</root>

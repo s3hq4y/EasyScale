@@ -1,0 +1,15 @@
+﻿<Application x:Class="EasyScale.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:EasyScale.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- WPF-UI 控件与主题字典；主题具体取值由 ThemeManager 运行时应用。 -->
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+                        </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
