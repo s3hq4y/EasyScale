@@ -1,71 +1,76 @@
 # EasyScale
 
-一个方便修改 Windows「系统 → 屏幕 → 缩放」的小工具。
-带托盘图标，Fluent UI 风格界面，支持预设缩放档位。
+A small utility to change the Windows **Settings → System → Display → Scale** setting quickly.
+It lives in the system tray, opens a Fluent UI window on click, and supports named scale presets.
 
-## 特性
+[简体中文](README.zh-CN.md)
 
-- **即时生效**：改缩放无需注销、无需管理员权限。
-- **Fluent UI**：基于 [WPF-UI](https://wpfui.lepo.co/)，跟随系统主题。
-- **托盘常驻**：左键唤起主窗口，右键菜单（显示 / 预设 / 设置 / 退出）；关窗最小化到托盘。
-- **命名预设**：把某台显示器的某个档位存为预设，一键切换。
-- **多语言**：中文（默认）/ English，运行时切换，无需重启。
-- **单文件绿色版**：自包含发布，配置存程序同目录。
+## Features
 
-## 技术栈
+- **Instant effect** — changing scale needs neither sign-out nor administrator rights.
+- **Fluent UI** — built on [WPF-UI](https://wpfui.lepo.co/), follows the system theme.
+- **Tray resident** — left-click restores the main window; right-click opens a menu (Show / Presets / Settings / Exit). Closing the window minimizes to tray.
+- **Named presets** — save a monitor's scale as a preset and re-apply it in one click.
+- **Multi-language** — Chinese (default) / English, switchable at runtime without restart.
+- **Single-file portable build** — self-contained, config stored next to the executable.
+
+## Tech stack
 
 - .NET 8 + WPF
-- WPF-UI 4.x（Fluent 2 风格控件 + 托盘）
-- CommunityToolkit.Mvvm（MVVM 源生成器）
-- 核心：`user32.dll` 的 `DisplayConfigGetDeviceInfo` / `DisplayConfigSetDeviceInfo`
+- WPF-UI 4.x (Fluent 2 controls + tray)
+- CommunityToolkit.Mvvm (MVVM source generators)
+- Core: `user32.dll` `DisplayConfigGetDeviceInfo` / `DisplayConfigSetDeviceInfo`
 
-> 说明：DPI 缩放读写使用两个**未公开**的 info type（`-3` GET / `-4` SET）。
-> 这两个接口在本机 Windows 26H1 实测可用、立即生效、无需提权。
-> 相关语义与实测记录见 [`docs/可行性评估.md`](docs/可行性评估.md)。
-> 为防接口随系统版本失效，缩放读写抽象为 `IDpiScaleApplier`，可整体替换实现。
+> Note: DPI scale read/write uses two **undocumented** info types (`-3` GET / `-4` SET).
+> Both were verified on Windows 26H1 (build 28000): they take effect immediately and
+> require no elevation. See [`docs/可行性评估.md`](docs/可行性评估.md) for the measurements.
+> To guard against the interface changing across Windows versions, scale I/O is abstracted
+> behind `IDpiScaleApplier`, so the implementation can be swapped wholesale.
 
-## 项目结构
+## Project layout
 
 ```
 src/
-  EasyScale.Core/     # 与 UI 无关的核心：互操作、枚举显示器、读写缩放
-  EasyScale.App/      # WPF 应用：托盘、Fluent UI、i18n、设置与预设
-  EasyScale.Probe/    # 控制台验证程序（交叉验证档位 ↔ 实际 DPI）
+  EasyScale.Core/     # UI-agnostic core: interop, monitor enumeration, scale I/O
+  EasyScale.App/      # WPF app: tray, Fluent UI, i18n, settings and presets
+  EasyScale.Probe/    # Console verifier (cross-checks scale step <-> actual DPI)
 tools/
-  dpi-scale-probe.ps1 # PowerShell 探测脚本（-List / -Delta / -SetRel）
-  make-icon.ps1       # 生成托盘/应用图标（可复现，不硬编码二进制）
+  dpi-scale-probe.ps1 # PowerShell probe (-List / -Delta / -SetRel)
+  make-icon.ps1       # Generates the tray/app icon (reproducible, no hard-coded binary)
 docs/
-  可行性评估.md        # 可行性结论与实测证据
+  可行性评估.md        # Feasibility findings and measurements (Chinese)
 ```
 
-## 构建与运行
+## Build and run
 
-需要 .NET 8 SDK。
+Requires the .NET 8 SDK.
 
 ```powershell
-# 运行
+# Run
 dotnet run --project src/EasyScale.App
 
-# 单文件绿色版（产物在 publish/ 下）
+# Single-file portable build (output under publish/)
 dotnet publish src/EasyScale.App -c Release -r win-x64 -o publish
 ```
 
-## 验证
+## Verification
 
-`EasyScale.Probe` 可独立验证「档位 ↔ 实际 DPI」映射：
+`EasyScale.Probe` independently verifies the scale step <-> actual DPI mapping:
 
 ```powershell
 dotnet run --project src/EasyScale.Probe
 ```
 
-> 注意：交叉验证要求调用方进程 DPI 感知（PerMonitorV2）。
-> 控制台默认不感知，`GetDpiForMonitor` 会恒返回 96 DPI。Probe 已显式声明。
+> Note: cross-checking requires the caller to be DPI aware (PerMonitorV2).
+> A console is not aware by default, so `GetDpiForMonitor` would always report 96 DPI.
+> The probe declares awareness explicitly.
 
-## 已知限制
+## Known limitations
 
-- 仅支持 Windows。
-- 依赖未公开 API；若未来系统调整布局，`QueryDisplayConfig` 返回尺寸会最先暴露不一致。
+- Windows only.
+- Depends on undocumented APIs; if a future Windows build changes the struct layout,
+  the size returned by `QueryDisplayConfig` will be the first thing to break.
 
-## 许可
+## License
 
-待定。
+[MIT](LICENSE)
